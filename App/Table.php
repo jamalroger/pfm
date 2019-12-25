@@ -1,52 +1,87 @@
 <?php
-class Table {
+class Table
+{
 
     private $table;
     private $db;
 
-    public function __construct($table,$db){
+    public function __construct($table, $db)
+    {
         $this->table = $table;
         $this->db = $db;
+        
     }
+
+    /**
+     * Selectionner avec condition
+     */
+    public function selectionnerAvecCondition($cols, $operator, $val)
+    {
+        
+    }
+
+    /**
+     * Selectionner une ou plusieurs
+     */
+    public function selectionner($columns = [], $condition="")
+    {
+        if (empty($columns)) {
+            $query = "select * from $this->table";
+        } else {
+            $columns = implode(',', $columns);
+            $query = "select $columns from $this->table";
+        }
+        if(empty($condition)){
+            $query .= " whe$condition";
+        }
+        
     
-    public function selectionner(){
-        $query="select * from $this->table";
+
+
         $stmt = $this->db->query($query);
         return $stmt->fetchAll();
     }
 
-    public function delete($column,$operator,$value) {
+    /**
+     * Supprimer une colonne avec condition
+     */
+    public function supprimer($column, $operator, $value)
+    {
         $query = "delete from $this->table where $column $operator '$value'";
         $stmt = $this->db->prepare($query);
         return $stmt->execute();
     }
     
-    public function modifier($column,$value,$condition){
+    /**
+     * Modification du colonne avec condition 
+     */
+    public function modifier($column, $value, $condition)
+    {
 
-            $query= "UPDATE $this->table set $column=? where $condition";
+        $query = "UPDATE $this->table set $column=? where $condition";
 
-            $stmt = $this->db->prepare($query);
+        $stmt = $this->db->prepare($query);
 
-            return $stmt->execute([$value]);   
+        return $stmt->execute([$value]);
     }
 
-   
-    public function addLigne($array){
-        $str = "";
-        $firstValueCheck = false;
-        foreach ($array as $columnName => $value) {
 
-            if($firstValueCheck){
-                $str.= ",'".$value."'";
-            } else {
-                $str.= "'".$value."'";
-                $firstValueCheck = true;
-            }
+    /**
+     * Ajouter une ligne a une table
+     */
+    public function ajouter($array)
+    {
+        foreach ($array as $index => $value) {
+            $array[$index] = "'".$value."'";
         }
+        $str = implode(',', $array);
 
         $query = "insert into $this->table values ($str)";
 
+
         $stmt = $this->db->prepare($query);
-       return $stmt->execute();   
+
+
+        return $stmt->execute();
     }
 }
