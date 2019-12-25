@@ -14,7 +14,6 @@ class Table {
     }
 
     public function delete($column,$value) {
-
         $query = "delete from $this->table where $column=?";
         $stmt = $db->prepare($query);
         $stmt->execute([$value]);
@@ -30,7 +29,7 @@ class Table {
     }
 
    
-    public function ajouterLigne ($array){
+    public function addLigne($array){
         $str = "";
         $firstValueCheck = false;
         foreach ($array as $columnName => $value) {
