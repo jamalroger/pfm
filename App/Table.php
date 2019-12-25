@@ -4,28 +4,30 @@ class Table {
     private $table;
     private $db;
 
-    public function __contstruct($table,$db){
+    public function __construct($table,$db){
         $this->table = $table;
         $this->db = $db;
     }
     
     public function selectionner(){
         $query="select * from $this->table";
+        $stmt = $this->db->query($query);
+        return $stmt->fetchAll();
     }
 
-    public function delete($column,$value) {
-        $query = "delete from $this->table where $column=?";
-        $stmt = $db->prepare($query);
-        $stmt->execute([$value]);
+    public function delete($column,$operator,$value) {
+        $query = "delete from $this->table where $column $operator '$value'";
+        $stmt = $this->db->prepare($query);
+        return $stmt->execute();
     }
     
     public function modifier($column,$value,$condition){
 
             $query= "UPDATE $this->table set $column=? where $condition";
 
-            $stmt = $db->prepare($query);
+            $stmt = $this->db->prepare($query);
 
-           return $stmt->execute([$value]);   
+            return $stmt->execute([$value]);   
     }
 
    
@@ -35,16 +37,16 @@ class Table {
         foreach ($array as $columnName => $value) {
 
             if($firstValueCheck){
-                $str.= ",".$value;
+                $str.= ",'".$value."'";
             } else {
-                $str.= $value;
+                $str.= "'".$value."'";
                 $firstValueCheck = true;
             }
         }
 
-        $query = "insert into $this->table values $str";
+        $query = "insert into $this->table values ($str)";
 
-        $stmt = $db->prepare($query);
-        $stmt->execute();   
+        $stmt = $this->db->prepare($query);
+       return $stmt->execute();   
     }
 }
