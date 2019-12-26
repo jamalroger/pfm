@@ -1,11 +1,10 @@
 <?php
 
-   spl_autoload_register(function($class){
-       require_once './App/'.$class.'.php';
-   });
+spl_autoload_register(function ($class) {
+    require_once './App/' . $class . '.php';
+});
 
 //    $client = new Table('clients',$db);
-
 
 //    $client->ajouter([
 //     'nom'=>"test 1",
@@ -21,13 +20,15 @@
 
 // $client->supprimer("nom","=","test 1");
 
-$db = new Database("test");
-
+// $db = new Database("test");
 
 // $db->creerTable("test_3",['nom','prenom'],['text','text']);
 
-$db->table("clients")->ajouter(["jamal","belharradi","is","beautiful"]);
+// $db->table("clients")->ajouter(["jamal","belharradi","is","beautiful"]);
 
+$dbs = new Databases();
 
-
-
+// $dbs->supprimerBaseDeDonees('dumpBase');
+// $dbs->ajouterBaseDeDonees('dumpBase');
+$dbs->choisirBaseDeDonees('dumpBase');
+$dbs->afficherBaseDeDonees();

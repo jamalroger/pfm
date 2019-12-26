@@ -9,7 +9,7 @@ class Table
     {
         $this->table = $table;
         $this->db = $db;
-        
+
     }
 
     /**
@@ -17,13 +17,13 @@ class Table
      */
     public function selectionnerAvecCondition($cols, $operator, $val)
     {
-        
+
     }
 
     /**
      * Selectionner une ou plusieurs
      */
-    public function selectionner($columns = [], $condition="")
+    public function selectionner($columns = [], $condition = "")
     {
         if (empty($columns)) {
             $query = "select * from $this->table";
@@ -31,12 +31,9 @@ class Table
             $columns = implode(',', $columns);
             $query = "select $columns from $this->table";
         }
-        if(empty($condition)){
-            $query .= " whe$condition";
+        if (empty($condition)) {
+            $query .= " where $condition";
         }
-        
-    
-
 
         $stmt = $this->db->query($query);
         return $stmt->fetchAll();
@@ -51,9 +48,9 @@ class Table
         $stmt = $this->db->prepare($query);
         return $stmt->execute();
     }
-    
+
     /**
-     * Modification du colonne avec condition 
+     * Modification du colonne avec condition
      */
     public function modifier($column, $value, $condition)
     {
@@ -65,22 +62,19 @@ class Table
         return $stmt->execute([$value]);
     }
 
-
     /**
      * Ajouter une ligne a une table
      */
     public function ajouter($array)
     {
         foreach ($array as $index => $value) {
-            $array[$index] = "'".$value."'";
+            $array[$index] = "'" . $value . "'";
         }
         $str = implode(',', $array);
 
         $query = "insert into $this->table values ($str)";
 
-
         $stmt = $this->db->prepare($query);
-
 
         return $stmt->execute();
     }
