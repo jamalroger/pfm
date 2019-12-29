@@ -11,7 +11,7 @@ $databases_list = $databases->afficherBaseDeDonees();
  <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Gestion des base des donnees </title>
+  <title> Gestion des base des donnees </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -24,6 +24,19 @@ $databases_list = $databases->afficherBaseDeDonees();
 
 <div class="container">
     <div class="row">
+            
+            <div clas="row">
+
+                <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="usr">Create database:</label>
+                            <input type="text" class="form-control" placeholder="Database name" id="usr">
+                        </div>
+                </div>
+                <div class="col-md-2">
+                            <input type="submit" class="btn btn-primary" value="Submit">
+                </div>
+            </div>
             <div class="col-md-4">  
                 <h1>Les Base de donnees</h1>
                 <ul class="list-group">

@@ -26,9 +26,7 @@ spl_autoload_register(function ($class) {
 
 // $db->table("clients")->ajouter(["jamal","belharradi","is","beautiful"]);
 
-// $dbs = new Databases();
+$dbs = new Databases();
 
-// $dbs->supprimerBaseDeDonees('dumpBase');
-// $dbs->ajouterBaseDeDonees('dumpBase');
-// $dbs->choisirBaseDeDonees('dumpBase');
-// $dbs->afficherBaseDeDonees();
+
+var_dump($dbs->afficherBaseDeDonees());

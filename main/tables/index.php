@@ -1,4 +1,4 @@
-<?php
+.<?php
 
 spl_autoload_register(function ($class) {
     require_once './App/' . $class . '.php';
@@ -23,6 +23,18 @@ if(isset($_GET['dbName'])) {
 <body>
 
 <div class="container">
+    <div clas="row">
+                
+                <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="usr"> Create Table :</label>
+                            <input type="text" class="form-control" placeholder="Database name" id="usr">
+                        </div>
+                </div>
+                <div class="col-md-2">
+                    <input type="submit" class="btn btn-primary" value="Create ">
+                </div>
+        </div>
     <div class="row">
             <div class="col-md-4">  
                 <h1>Les Base de donnees</h1>
@@ -60,7 +72,7 @@ if(isset($_GET['dbName'])) {
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Suppression du table</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                                <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
