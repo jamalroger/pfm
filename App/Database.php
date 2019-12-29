@@ -8,7 +8,7 @@ class Database
     {
 
         try {
-            $this->db = new PDO("mysql:host=localhost;dbname=$dbName", "root", "root");
+            $this->db = new PDO("mysql:host=localhost;dbname=$dbName", "root", "soufiayyoub");
 
         } catch (Exception $ex) {
             echo $ex->getMessage();
