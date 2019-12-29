@@ -3,8 +3,11 @@
 spl_autoload_register(function ($class) {
     require_once './App/' . $class . '.php';
 });
-$databases = new Databases();
-$databases_list = $databases->afficherBaseDeDonees;
+if(isset($_GET['dbName'])) {
+    $dbName = $_GET['dbName'];
+    $database = new Database($dbName);
+    $tables = $database->afficherTables();
+}
 ?>
  <!DOCTYPE html>
 <html lang="en">
@@ -26,16 +29,14 @@ $databases_list = $databases->afficherBaseDeDonees;
                 <h1>Les Base de donnees</h1>
                 <ul class="list-group">
                 <?php foreach($databases_list as $db) { ?>
-                    <li class="list-group-item">
-                        <a href="/databaseInfo.php?dbName=<?=$db; ?>"><?=$db; ?></a>
-                    </li>
+                    <li class="list-group-item"><?=$db; ?></li>
                 <? }?>
                 </ul>
             </div>
      
 
         <div class="col-md-8">
-            <h2>Choisir une base de donnee</h2>
+            fffffffffff
         </div>
     </div>
 </div>

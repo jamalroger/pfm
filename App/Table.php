@@ -78,4 +78,13 @@ class Table
 
         return $stmt->execute();
     }
+
+public function getChamps(){
+
+        $query = "describe $this->table";
+
+        $stmt = $this->db->query($query);
+
+       return $result = $stmt->fetchAll(PDO::FETCH_NUM);
+}
 }
