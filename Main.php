@@ -5,18 +5,17 @@ spl_autoload_register(function ($class) {
 });
 
 //    $client = new Table('clients',$db);
-
 //    $client->ajouter([
 //     'nom'=>"test 1",
 //     'prenom'=>"test prenom 2",
 //     'tele'=>"045frew2",
-//     'pay'=>"ifrane2",
+//     'pay'=>"ifraAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAne2",
 // ]);
 // echo "<pre>";
 
 // print_r($client->selectionner());
 
-// $client->modifier("nom","test modifier","nom='test'");
+// $client->modifier("nom","test moAAAAAAAAAAAAAAAAAAAAAAAAAAAAAdifier","nom='test'");
 
 // $client->supprimer("nom","=","test 1");
 

@@ -6,11 +6,7 @@ class Databases
     public function __construct()
     {
         try {
-<<<<<<< HEAD
-            $this->dbs = new PDO("mysql:host=MacBook-Pro-de-abdelali.local;", "root", "");
-=======
-            $this->dbs = new PDO("mysql:host=MacBook-Pro-de-abdelali.local;", "root", "soufiayyoub");
->>>>>>> e2a6a47e9120f2e118e832e9d6dd30e52b8910f1
+            $this->dbs = new PDO("mysql:host=localhost;", "root", "");
         } catch (Exception $ex) {
             echo $ex->getMessage();
             die();
@@ -66,3 +62,5 @@ class Databases
     }
 
 }
+
+

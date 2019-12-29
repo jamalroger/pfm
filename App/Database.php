@@ -8,11 +8,7 @@ class Database
     {
 
         try {
-<<<<<<< HEAD
-            $this->db = new PDO("mysql:host=localhost;dbname=$dbName", "root", "");
-=======
-            $this->db = new PDO("mysql:host=localhost;dbname=$dbName", "root", "soufiayyoub");
->>>>>>> e2a6a47e9120f2e118e832e9d6dd30e52b8910f1
+            $this->db = new PDO("mysql:host=MacBook-Pro-de-abdelali.local;dbname=$dbName", "root", "");
 
         } catch (Exception $ex) {
             echo $ex->getMessage();
@@ -46,7 +42,7 @@ class Database
 
         $str = "";
         foreach ($columns as $index => $column) {
-            if ($index == 0) {
+            if ($index == 0)    {
                 $str .= "$column $types[$index]";
             } else {
                 $str .= ",$column $types[$index]";
