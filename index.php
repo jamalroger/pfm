@@ -8,5 +8,6 @@ if(isset($page)){
 
 
 } else {
+    
     include_once "./main/index.php";
 }

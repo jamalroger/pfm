@@ -8,8 +8,7 @@ class Table
     public function __construct($table, $db)
     {
         $this->table = $table;
-        $this->db = $db;
-
+        $this->db = new PDO("mysql:host=localhost;dbname=$db","root","");
     }
 
     /**
@@ -31,12 +30,12 @@ class Table
             $columns = implode(',', $columns);
             $query = "select $columns from $this->table";
         }
-        if (empty($condition)) {
+        if (!empty($condition)) {
             $query .= " where $condition";
         }
-
-        $stmt = $this->db->query($query);
-        return $stmt->fetchAll();
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -52,10 +51,10 @@ class Table
     /**
      * Modification du colonne avec condition
      */
-    public function modifier($column, $value, $condition)
+    public function modifier($column, $value, $id)
     {
 
-        $query = "UPDATE $this->table set $column=? where $condition";
+        $query = "UPDATE $this->table set $column=? where id =$id";
 
         $stmt = $this->db->prepare($query);
 

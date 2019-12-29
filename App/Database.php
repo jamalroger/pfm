@@ -8,7 +8,7 @@ class Database
     {
 
         try {
-            $this->db = new PDO("mysql:host=MacBook-Pro-de-abdelali.local;dbname=$dbName", "root", "");
+            $this->db = new PDO("mysql:host=localhost;dbname=$dbName;", "root", "");
 
         } catch (Exception $ex) {
             echo $ex->getMessage();
@@ -23,7 +23,8 @@ class Database
     public function afficherTables()
     {
         $query = "show tables";
-        $stmt = $this->db->query($query);
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_NUM);
         $tables = [];
         foreach ($result as $table) {
