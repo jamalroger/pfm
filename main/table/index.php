@@ -10,10 +10,11 @@ spl_autoload_register(function ($class) {
 $databases = new Databases();
 $databases_list = $databases->afficherBaseDeDonees();
 if (isset($_GET['dbName']) && isset($_GET['tableName'])) {
-    $table = new Table($_GET['tableName'], $_GET['dbName']);
+    $tableName = $_GET['tableName']; 
+    $dbName = $_GET['dbName'];
+    $table = new Table($tableName, $dbName);
     $data = $table->selectionner();
-    $data_cols=[];
-    foreach($data[0] as $key=>$value)$data_cols[]=$key;
+    $data_cols = $table->getChamps();
 
 
 }
@@ -28,19 +29,7 @@ if (isset($_GET['dbName']) && isset($_GET['tableName'])) {
 <body>
 
 <div class="container" style="justify-content:center">
-       <label for="usr">Insert Ligne:</label>
-       <form action="./" method="post">
-         <div class="row">
-                <div class="col-md-8">
-                <div class="col-xs-2">
-                    <input class="form-control" id="ex1" type="text">
-                </div>
-                </div>
-                <div class="col-md-4">
-                    <input type="submit" class="btn btn-primary" value="insert">
-                </div>
-           </div>
-        </form>
+       
         <div class="row">
                 <div class="col-md-4">
                     <div class="card">
@@ -84,7 +73,7 @@ if (isset($_GET['dbName']) && isset($_GET['tableName'])) {
                 </div>
                     <div class="col-md-8">
                     <div class="card"></div>
-                        <div class="card-header">Les tables  </div>
+                        <div class="card-header">Les tables  <span> <a href=""> </a>  </span> </div>
                         <div class="">
                         <table class="table table-striped">
                             <thead>
@@ -104,16 +93,15 @@ if (isset($_GET['dbName']) && isset($_GET['tableName'])) {
                              <?php } ?>
                             </tbody>
                     </table>
+                    <a href="./ajouter.php?tableName=<?= $_GET['tableName'] ?>&dbName=<?= $_GET['dbName'] ?>" class="btn btn-primary">Insérer une ligne</a>
+                    
                     </div>
              </div>
         </div>
     </div>
 
  <!-- Modal -->
- <script>
-        var data = <?php echo json_encode($data); ?>;
-    </script>
-<script src="../../public/js/script.js"></script>
+
 </body>
 </html>
 

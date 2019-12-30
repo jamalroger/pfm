@@ -1,3 +1,4 @@
+
 <?php
 
 spl_autoload_register(function ($class) {
@@ -19,30 +20,11 @@ $dbName = $_GET['dbName'];
 <html lang="en">
 <head>
   <title> Gestion des base des donnees</title>
-  <?php require_once('../../public/includes/include.php')?>
+    <?php require_once '../../public/includes/include.php'?>
 </head>
 <body>
 
 <div class="container" style="justify-content:center">
-       <label for="usr">Create Table:</label>
-       <?php if (!empty($create_err)) {?>
-              <div class="alert alert-danger">
-                  <?=$create_err?>
-
-             </div>
-       <?php }?>
-       <form action="./" method="post">
-         <div class="row">
-                <div class="col-md-8">
-                        <div class="form-group">
-                            <input type="text" name="create_dbname" class="form-control" placeholder="Table name" id="usr">
-                        </div>
-                </div>
-                <div class="col-md-4">
-                    <input type="submit" class="btn btn-primary" value="Create">
-                </div>
-        </div>
-        </form>
         <div class="row">
                 <div class="col-md-4">
                     <div class="card">
@@ -86,7 +68,11 @@ $dbName = $_GET['dbName'];
                 </div>
                     <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">Les tables</div>
+                        <div class="card-header">Les tables
+                            <div style="float:right">
+                                 <a href="#" class="btn btn-danger" data-toggle="modal"  data-target="#create_table">Create Table</a>
+                           </div>
+                        </div>
                         <div class="">
                         <table class="table table-striped">
                              <thead>
@@ -97,14 +83,14 @@ $dbName = $_GET['dbName'];
                             </thead>
                                 <tbody  >
                                <?php if (isset($tables)) {
-                                          foreach ($tables as $table) {?>
+    foreach ($tables as $table) {?>
                                           <a href="../table/index.php?tableName=<?=$table;?>&dbName=<?=$db?>">
                                             <tr>
                                                     <td>
                                                      <a href="../table/index.php?tableName=<?=$table;?>&dbName=<?=$dbName?>"> <?=$table;?></a>
                                                      </td>
-                        
-                                                    <td>  
+
+                                                    <td>
                                                         <a href="#" class="btn btn-danger" data-toggle="modal"  data-target="#<?=$table;?>">Supprimer</a>
                                                          <!-- Modal -->
                                 <div class="modal fade" id="<?=$table;?>" tabindex="-1" role="dialog"
@@ -132,26 +118,85 @@ $dbName = $_GET['dbName'];
                                             </div>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                                                     </td>
                                          </tr>
                                           </a>
-                                <?php }} ?>
+                                <?php }}?>
                             </tbody>
                     </table>
                     </div>
              </div>
         </div>
     </div>
-  
+
  <!-- Modal -->
- <script>
-        var data = <?php echo json_encode($data); ?>;
-    </script>
-<script src="./public/js/script.js"></script>
+
+    <div class="modal fade" id="create_table" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                     <div class="modal-dialog" role="document">
+
+                     <div class="modal-content">
+                  <form action="./createTable.php" method="post">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Creation de Table  </h5>
+                          <button type="button" class="close" data-dismiss="modal"
+                                  aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body" >
+                          <input type="hidden" name="db_name" value="<?=$dbName?>" >
+                          <input type="text" name="table_name" class="form-control" placeholder="Table name" id="usr" required>
+                          <br/>
+                          <div class="card">
+                              <div class="card-header">
+                                  les champs
+                                <span style="float:right">
+                                         <a href="#" class="btn btn-danger" onclick="addRows()">Add Rows</a>
+                                 </span>
+                              </div>
+                              <div class="card-body" id="rows">
+                                <div id="row">
+                                     <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Champs</span></div>
+                                                <input type="text" name="fields[]" class="form-control" placeholder="Field name">
+                                                  <select name="types[]" required>
+                                                      <option value="int"> Int </option>
+                                                      <option value="text"> Text </option>
+                                                      <option value="date"> Date </option>
+                                                  </select>
+                                            </div>
+                                    </div>
+                              </div>
+                          </div>
+
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary"
+                                  data-dismiss="modal">
+                              Close
+                          </button>
+                          <input type="submit" class="btn btn-primary" value="Create Table">
+                      </div>
+      </form>
+</div>
+
+
+
+                    </div>
+    </div>
+
+<script>
+    function addRows() {
+
+           $("#rows").append($("#row").html());
+        
+    }
+</script>
 </body>
 </html>
-
 
 
 

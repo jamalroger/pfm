@@ -84,6 +84,11 @@ public function getChamps(){
 
         $stmt = $this->db->query($query);
 
-       return $result = $stmt->fetchAll(PDO::FETCH_NUM);
+        $result = $stmt->fetchAll(PDO::FETCH_NUM);
+        $fields = [];
+        foreach ($result as $value) {
+            $fields[] = $value[0];
+        }
+        return $fields;
 }
 }

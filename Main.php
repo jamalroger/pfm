@@ -17,15 +17,12 @@ spl_autoload_register(function ($class) {
 
 // $client->modifier("nom","test moAAAAAAAAAAAAAAAAAAAAAAAAAAAAAdifier","nom='test'");
 
-// $client->supprimer("nom","=","test 1");
 
-// $db = new Database("test");
+$db = new Table("clients","test");
 
-// $db->creerTable("test_3",['nom','prenom'],['text','text']);
-
-// $db->table("clients")->ajouter(["jamal","belharradi","is","beautiful"]);
-
-$dbs = new Databases();
+var_dump($db->getChamps());
 
 
-var_dump($dbs->afficherBaseDeDonees());
+
+
+

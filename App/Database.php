@@ -8,8 +8,8 @@ class Database
     {
 
         try {
-            $this->db = new PDO("mysql:host=localhost;dbname=$dbName;", "root", "");
-
+            $this->db = new PDO("mysql:host=localhost;dbname=$dbName", "root", "");
+            
         } catch (Exception $ex) {
             echo $ex->getMessage();
             die();
@@ -50,6 +50,7 @@ class Database
             }
         }
         $query = "create table $table($str)";
+        var_dump($query);
         $stmt = $this->db->prepare($query);
         return $stmt->execute();
     }
