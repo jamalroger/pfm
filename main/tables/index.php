@@ -21,6 +21,7 @@ $dbName = $_GET['dbName'];
 <head>
   <title> Gestion des base des donnees</title>
     <?php require_once '../../public/includes/include.php'?>
+    <link rel="stylesheet" href="../../public/style.css">
 </head>
 <body>
 
@@ -32,10 +33,9 @@ $dbName = $_GET['dbName'];
 
                         <div class="">
                                     <?php foreach ($databases_list as $db) {?>
-                                            <div style="border-top:1px solid #eee;font-size:15px;padding:15px">
-                                                <a href="./?dbName=<?=$db;?>">=><?=$db;?> </a>
+                                            <div style="border-top:1px solid #eee;font-size:15px;padding:15px;<?=$_GET['dbName']==$db?"background:#cee6bf":""?> ">
+                                                <a href="./?dbName=<?=$db;?>"><?=$db;?> </a>
 
-                                                <a href="#" class="btn btn-danger" style="float:right" data-toggle="modal" data-target="#<?=$db;?>">Supprimer</a>
                                                 <div class="modal fade" id="<?=$db;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                        <div class="modal-content">
@@ -113,7 +113,7 @@ $dbName = $_GET['dbName'];
                                                         data-dismiss="modal">
                                                     Close
                                                 </button>
-                                                <a href="supprimerTable.php?dbName=<?=$db;?>&tableName=<?=$table;?>"
+                                                <a href="./supprimerTable.php?dbName=<?=$_GET['dbName'];?>&tableName=<?=$table;?>"
                                                    class="btn btn-danger">Supprimer</a>
                                             </div>
                                         </div>

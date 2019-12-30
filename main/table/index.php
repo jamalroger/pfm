@@ -37,10 +37,9 @@ if (isset($_GET['dbName']) && isset($_GET['tableName'])) {
 
                         <div class="">
                                     <?php foreach ($databases_list as $db) {?>
-                                            <div style="border-top:1px solid #eee;font-size:15px;padding:15px">
-                                                <a href="../tables/index.php?dbName=<?=$db;?>">=><?=$db;?> </a>
+                                            <div style="border-top:1px solid #eee;font-size:15px;padding:15px;<?=$_GET['dbName']==$db?"background:#cee6bf":""?>">
+                                                <a href="../tables/index.php?dbName=<?=$db;?>"><?=$db;?> </a>
 
-                                                <a href="#" class="btn btn-danger" style="float:right" data-toggle="modal" data-target="#<?=$db;?>">Supprimer</a>
                                                 <div class="modal fade" id="<?=$db;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                        <div class="modal-content">

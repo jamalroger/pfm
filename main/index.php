@@ -67,7 +67,7 @@ $databases_list = $databases->afficherBaseDeDonees();
                         <div class="">
                                     <?php foreach ($databases_list as $db) {?>
                                             <div style="border-top:1px solid #eee;font-size:15px;padding:15px">
-                                                <a href="tables/index.php?dbName=<?=$db;?>">=><?=$db;?> </a>
+                                                <a href="tables/index.php?dbName=<?=$db;?>"><?=$db;?> </a>
 
                                                 <a href="#" class="btn btn-danger" style="float:right" data-toggle="modal" data-target="#<?=$db;?>">Supprimer</a>
                                                 <div class="modal fade" id="<?=$db;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -101,7 +101,9 @@ $databases_list = $databases->afficherBaseDeDonees();
                         </div>
                 </div>
                     <div class="col-md-8" style="padding:100px">
-                        <h2>Choisir une base de donnees ??</h2>
+                        <div class="alert alert-info">
+                            <h2>Aucune base de donnee est choisie !</h2>
+                        </div>
                     </div>
         </div>
     </div>

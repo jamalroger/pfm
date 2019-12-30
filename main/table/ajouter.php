@@ -45,6 +45,7 @@ if (isset($_GET['dbName']) && isset($_GET['tableName'])) {
     <!-- <?php if(isset($error) && $error != ""){ ?>
             <div class="alert alert-danger" id="alert"><?= $error ?></div>
             <?php   } ?> -->
+            <h1 class="text-center">Ajouter une ligne</h1>
         <div class="row justify-content-center">
             <div class="col-sm-5">
                 <form class="form" action="#" method="POST">
